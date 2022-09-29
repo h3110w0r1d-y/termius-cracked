@@ -1,0 +1,2 @@
+# termius-cracked
+Termius Pro
