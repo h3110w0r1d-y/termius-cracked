@@ -13,14 +13,13 @@ npm install -g asar
 
 ### for MAC
 
-#### 解包
-解包app.asar
+1. 解包app.asar
 ```shell
 cd /Applications/Termius.app/Contents/Resources/
 asar extract app.asar ./app
 mv app.asar app.asar.bak
 ```
-#### 修改app/js/background-process.js
+2. 修改app/js/background-process.js
 
 搜索await this.api.bulkAccount
 
