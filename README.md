@@ -34,6 +34,7 @@ e.account.current_period={
 };
 e.account.plan_type="Premium";
 e.account.user_type="Premium";
+e.account.expired_screen_type="PREMIUM";
 e.account.authorized_features.show_trial_section=false;
 e.account.authorized_features.show_subscription_section=true;
 delete e.trial;
@@ -44,5 +45,6 @@ return .......
 
 搜索await this.api.login
 
-`const o=await this.api.login` -> `var o=await this.api.login
+`const o=await this.api.login` -> `var o=await this.api.login`
+
 ![image](https://user-images.githubusercontent.com/52311174/192995873-3b40a579-70dc-41b5-b4eb-25f993fc48f7.png)
