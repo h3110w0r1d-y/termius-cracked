@@ -8,7 +8,7 @@ npm install -g asar
 ```
 ### for Windows
 
-...
+大同小异，看下面Mac的破解方法
 
 
 ### for MAC
@@ -16,8 +16,10 @@ npm install -g asar
 1. 解包app.asar
 ```shell
 cd /Applications/Termius.app/Contents/Resources/
-asar extract app.asar ./app
-mv app.asar app.asar.bak
+asar extract app.asar ./app  # 修改完不需要重新打包
+mv app.asar app.asar.bak  # 留个备份，或者直接rm
+rm app-update.yml  # 防止自动更新
+
 ```
 2. 修改app/js/background-process.js
 
