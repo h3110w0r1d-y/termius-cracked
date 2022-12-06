@@ -21,9 +21,9 @@ mv app.asar app.asar.bak
 ```
 2. 修改app/js/background-process.js
 
-搜索await this.api.bulkAccount
+搜索`await this.api.bulkAccount`
 
-`const x=e=await this.api.bulkAccount();` -> `var x=e=await this.api.bulkAccount();`
+`const e=await this.api.bulkAccount();` -> `var e=await this.api.bulkAccount();`
 
 ```js
 var e=await this.api.bulkAccount();
@@ -34,17 +34,84 @@ e.account.current_period={
 };
 e.account.plan_type="Premium";
 e.account.user_type="Premium";
-e.account.expired_screen_type="PREMIUM";
+e.account.expired_screen_type=null;
+
+e.account.authorized_features.show_create_team_promotions=false;
 e.account.authorized_features.show_trial_section=false;
 e.account.authorized_features.show_subscription_section=true;
-delete e.trial;
-delete e.team;
-delete e.student;
+e.account.authorized_features.show_github_account_section=false;
+e.account.authorized_features.show_team_member_activation_into_identities_tour=false;
+e.trial=null;
+e.team=null;
+e.student=null;
+e.personal_subscription={
+    "now": new Date().toISOString().slice(0, -5),
+    "status": "SUCCESS",
+    "platform": "stripe",
+    "current_period": {
+        "from": "2022-01-01T00:00:00",
+        "until": "2099-01-01T00:00:00"
+    },
+    "revokable": true,
+    "refunded": false,
+    "cancelable": true,
+    "reactivatable": false,
+    "currency": "usd",
+    "created_at": "2022-01-01T00:00:00",
+    "updated_at": new Date().toISOString().slice(0, -5),
+    "valid_until": "2099-01-01T00:00:00",
+    "auto_renew": true,
+    "price": 12.0,
+    "verbose_plan_name": "Termius Pro Monthly",
+    "plan_type": "SINGLE",
+    "is_expired": false
+};
 return .......
 ```
 
 搜索await this.api.login
 
-`const o=await this.api.login` -> `var o=await this.api.login`
+`const s=await this.api.login` -> `var s=await this.api.login`
+```js
+var s=await this.api.login({email:a,firebase_token:n,authy_token:r,password:$I.generateHash(t),device:HA.toJSON()});
+s.bulk_account.account.pro_mode=true;
+s.bulk_account.account.current_period={
+    "from": "2022-01-01T00:00:00",
+    "until": "2099-01-01T00:00:00"
+};
+s.bulk_account.account.plan_type="Premium";
+s.bulk_account.account.user_type="Premium";
+s.bulk_account.account.expired_screen_type=null;
 
-![image](https://user-images.githubusercontent.com/52311174/192995873-3b40a579-70dc-41b5-b4eb-25f993fc48f7.png)
+s.bulk_account.account.authorized_features.show_create_team_promotions=false;
+s.bulk_account.account.authorized_features.show_trial_section=false;
+s.bulk_account.account.authorized_features.show_subscription_section=true;
+s.bulk_account.account.authorized_features.show_github_account_section=false;
+s.bulk_account.account.authorized_features.show_team_member_activation_into_identities_tour=false;
+s.bulk_account.trial=null;
+s.bulk_account.team=null;
+s.bulk_account.student=null;
+s.bulk_account.personal_subscription={
+    "now": new Date().toISOString().slice(0, -5),
+    "status": "SUCCESS",
+    "platform": "stripe",
+    "current_period": {
+        "from": "2022-01-01T00:00:00",
+        "until": "2099-01-01T00:00:00"
+    },
+    "revokable": true,
+    "refunded": false,
+    "cancelable": true,
+    "reactivatable": false,
+    "currency": "usd",
+    "created_at": "2022-01-01T00:00:00",
+    "updated_at": new Date().toISOString().slice(0, -5),
+    "valid_until": "2099-01-01T00:00:00",
+    "auto_renew": true,
+    "price": 12.0,
+    "verbose_plan_name": "Termius Pro Monthly",
+    "plan_type": "SINGLE",
+    "is_expired": false
+};
+return .......
+```
